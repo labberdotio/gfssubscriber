@@ -1,0 +1,533 @@
+#
+# GFS API Composer HTTP Crud
+#
+
+# 
+# Ubuntu 18.04.6 Bionic LTS
+# 
+@baseUrl = http://controller3:5000
+
+# cores: String
+@devIp151Name = "devIp253"
+@devIp151Address = "10.88.88.253"
+
+
+
+###
+# @name updateDHCPCompose
+PUT {{baseUrl}}/api/v1.0/gfs1/compose/dhcpcompose1/autonomic-compose.yml HTTP/1.1
+Content-Type: application/json
+
+{
+  "version": "1.0",
+  "name": "autonomic-compose.yml",
+  "types": {
+    "TFTPServiceType": {
+      "name": "TFTPService",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "port": "string",
+        "configuredMachines": [
+          "#MachineType"
+        ]
+      },
+      "required": [
+        "name",
+        "port"
+      ]
+    },
+    "HTTPServiceType": {
+      "name": "HTTPService",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "defaultPath": "string",
+        "port": "string",
+        "configuredMachines": [
+          "#MachineType"
+        ]
+      },
+      "required": [
+        "name",
+        "defaultPath",
+        "port"
+      ]
+    },
+    "DnsmasqueDNSServiceType": {
+      "name": "DnsmasqueDNSService",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "domainName": "string",
+        "port": "string",
+        "server1": "string",
+        "server2": "string",
+        "configuredMachines": [
+          "#MachineType"
+        ]
+      },
+      "required": [
+        "name",
+        "domainName",
+        "port",
+        "server1",
+        "server2"
+      ]
+    },
+    "ISCDHCPServiceType": {
+      "name": "ISCDHCPService",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "defaultLeaseTime": "string",
+        "maxLeaseTime": "string",
+        "authoritative": "string",
+        "ipxeAware": "string",
+        "status": "string",
+        "bootPXEImage": "string",
+        "undiPXEImage": "string",
+        "configuredMachines": [
+          "#MachineType"
+        ],
+        "httpServices": [
+          "#HTTPServiceType"
+        ],
+        "dnsServices": [
+          "#DnsmasqueDNSServiceType"
+        ],
+        "tftpServices": [
+          "#TFTPServiceType"
+        ],
+        "subnets": [
+          "#SubnetType"
+        ],
+        "configuredMachineGroups": [
+          "#MachineGroupType"
+        ]
+      },
+      "required": [
+        "name",
+        "defaultLeaseTime",
+        "maxLeaseTime",
+        "ipxeAware",
+        "status"
+      ]
+    },
+    "MachineType": {
+      "name": "Machine",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "arch": "string",
+        "memory": "string",
+        "cpus": "string",
+        "cores": "string",
+        "ht": "string",
+        "diskController0": "string",
+        "diskDevice0": "string",
+        "diskController1": "string",
+        "diskDevice1": "string",
+        "diskDevice2": "string",
+        "diskDevice3": "string",
+        "diskDevice4": "string",
+        "diskDevice5": "string",
+        "diskDevice6": "string",
+        "diskDevice7": "string",
+        "configuredInterfaces": [
+          "#NetDeviceType"
+        ],
+        "defaultInterface": [
+          "#NetDeviceType"
+        ]
+      },
+      "required": [
+        "name",
+        "arch",
+        "memory",
+        "cpus",
+        "cores",
+        "ht"
+      ]
+    },
+    "MachineGroupType": {
+      "name": "MachineGroup",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "description": "string",
+        "members": [
+          "#MachineType"
+        ]
+      },
+      "required": [
+        "name",
+        "description"
+      ]
+    },
+    "NetDeviceType": {
+      "name": "NetDevice",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "hwaddr": "string",
+        "addresses": [
+          "#IpType"
+        ]
+      },
+      "required": [
+        "name",
+        "hwaddr"
+      ]
+    },
+    "SubnetType": {
+      "name": "Subnet",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "network": "string",
+        "netmask": "string",
+        "rangeStart": "string",
+        "rangeEnd": "string",
+        "routers": "string",
+        "nextServer": "string",
+        "routes": [
+          "#MachineType"
+        ],
+        "tftpServices": [
+          "#TFTPServiceType"
+        ],
+        "addresses": [
+          "#IpType"
+        ]
+      },
+      "required": [
+        "network",
+        "netmask",
+        "rangeStart",
+        "rangeEnd",
+        "routers",
+        "nextServer"
+      ]
+    },
+    "IpType": {
+      "name": "Ip",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "address": "string"
+      },
+      "required": [
+        "name",
+        "address"
+      ]
+    },
+    "ZoneType": {
+      "name": "Zone",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "ns": "string",
+        "soa": "string",
+        "primary": "string",
+        "refresh": "string",
+        "retry": "string",
+        "TTL": "string"
+      }
+    },
+    "SRVType": {
+      "name": "SRV",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "service": "string",
+        "protocol": "string",
+        "priority": "string",
+        "weight": "string",
+        "port": "string"
+      },
+      "required": [
+        "service",
+        "protocol",
+        "priority",
+        "weight",
+        "port"
+      ]
+    },
+    "SOAType": {
+      "name": "SOA",
+      "version": 1,
+      "property": {
+        "name": "string",
+        "primary": "string",
+        "refresh": "string",
+        "retry": "string",
+        "TTL": "string"
+      },
+      "required": [
+        "primary",
+        "refresh",
+        "retry",
+        "TTL"
+      ]
+    }
+  },
+  "DnsmasqueDNSServiceTypes": {
+    "devDnsmasqueDNSService": {
+      "data": {
+        "domainName": "dev.botcanics.com",
+        "port": "53",
+        "server1": "1.1.1.1",
+        "server2": "1.0.0.1",
+        "configuredMachines": [
+          "#controller"
+        ]
+      }
+    }
+  },
+  "HTTPServiceTypes": {
+    "ipxeHTTPService": {
+      "data": {
+        "port": "80",
+        "defaultPath": "ipxeboot.ipxe.php",
+        "configuredMachines": [
+          "#controller"
+        ]
+      }
+    }
+  },
+  "TFTPServiceTypes": {
+    "ipxeTFTPService": {
+      "data": {
+        "port": "69",
+        "configuredMachines": [
+          "#controller"
+        ]
+      }
+    }
+  },
+  "ISCDHCPServiceTypes": {
+    "devBotcanicsDHCP": {
+      "data": {
+        "defaultLeaseTime": "600",
+        "maxLeaseTime": "7200",
+        "authoritative": "",
+        "ipxeAware": "true",
+        "status": "active",
+        "bootPXEImage": "ipxe.efi",
+        "undiPXEImage": "undionly.kpxe",
+        "configuredMachines": [
+          "#controller"
+        ],
+        "httpServices": [
+          "#ipxeHTTPService"
+        ],
+        "dnsServices": [
+          "#devDnsmasqueDNSService"
+        ],
+        "subnets": [
+          "#devDynamicSubnet"
+        ],
+        "configuredMachineGroups": [
+          "#devBotcanicsGroup"
+        ]
+      }
+    }
+  },
+  "MachineTypes": {
+    "router": {
+      "data": {
+        "arch": "x86_64",
+        "memory": "2048",
+        "cpus": "1",
+        "cores": "2",
+        "ht": "true",
+        "diskController0": "VirtIO SCSI",
+        "diskDevice0": "local-lvm-1TB:vm-100-disk-0",
+        "configuredInterfaces": [
+          "#net8646C1C11889"
+        ],
+        "defaultInterface": [
+          "#net8646C1C11889"
+        ]
+      }
+    },
+    "controller": {
+      "data": {
+        "arch": "x86_64",
+        "memory": "8192",
+        "cpus": "1",
+        "cores": "4",
+        "ht": "true",
+        "diskController0": "VirtIO SCSI",
+        "diskDevice0": "local-lvm-1TB:vm-200-disk-0",
+        "configuredInterfaces": [
+          "#net7A80ED698A41"
+        ],
+        "defaultInterface": [
+          "#net7A80ED698A41"
+        ]
+      }
+    },
+    "botnode1": {
+      "data": {
+        "arch": "x86_64",
+        "memory": "4096",
+        "cpus": "1",
+        "cores": "2",
+        "ht": "true",
+        "diskController0": "VirtIO SCSI",
+        "diskDevice0": "local-lvm-1TB:vm-2000-disk-0",
+        "configuredInterfaces": [
+          "#net6EC66C286FDB"
+        ],
+        "defaultInterface": [
+          "#net6EC66C286FDB"
+        ]
+      }
+    },
+    "botnode2": {
+      "data": {
+        "arch": "x86_64",
+        "memory": "4096",
+        "cpus": "1",
+        "cores": "2",
+        "ht": "true",
+        "diskController0": "VirtIO SCSI",
+        "diskDevice0": "local-lvm-1TB:vm-2001-disk-0",
+        "configuredInterfaces": [
+          "#netEE966F41299C"
+        ],
+        "defaultInterface": [
+          "#netEE966F41299C"
+        ]
+      }
+    }
+  },
+  "MachineGroupTypes": {
+    "devBotcanicsGroup": {
+      "data": {
+        "description": "string",
+        "members": [
+          "#botnode2"
+        ]
+      }
+    }
+  },
+  "NetDeviceTypes": {
+    "net560AFFE78095": {
+      "data": {
+        "hwaddr": "56:0A:FF:E7:80:95"
+      }
+    },
+    "net7A80ED698A41": {
+      "data": {
+        "hwaddr": "7A:80:ED:69:8A:41"
+      }
+    },
+    "net6EC66C286FDB": {
+      "data": {
+        "hwaddr": "6E:C6:6C:28:6F:DB",
+        "addresses": [
+          "#devIp151"
+        ]
+      }
+    },
+    "netEE966F41299C": {
+      "data": {
+        "hwaddr": "EE:96:6F:41:29:9C",
+        "addresses": [
+          "#devIp172"
+        ]
+      }
+    },
+    "net8646C1C11889": {
+      "data": {
+        "hwaddr": "86:46:C1:C1:18:89",
+        "addresses": [
+          "#devIp1"
+        ]
+      }
+    },
+    "net32345C248751": {
+      "data": {
+        "hwaddr": "32:34:5C:24:87:51"
+      }
+    }
+  },
+  "SubnetTypes": {
+    "devStaticSubnet": {
+      "data": {
+        "network": "10.88.88.0",
+        "netmask": "255.255.255.0",
+        "rangeStart": "10.88.88.200",
+        "rangeEnd": "10.88.88.250",
+        "routers": "10.88.88.10",
+        "nextServer": "10.88.88.60",
+        "addresses": [
+          "#devIp152"
+        ]
+      }
+    },
+    "devDynamicSubnet": {
+      "data": {
+        "network": "10.88.88.0",
+        "netmask": "255.255.255.0",
+        "rangeStart": "10.88.88.200",
+        "rangeEnd": "10.88.88.250",
+        "routers": "10.88.88.10",
+        "nextServer": "10.88.88.60",
+        "routes": [
+          "#router"
+        ]
+      }
+    }
+  },
+  "IpTypes": {
+    "lanIp160": {
+      "data": {
+        "address": "192.168.0.160"
+      }
+    },
+    "externalIp-1-1-1-1": {
+      "data": {
+        "address": "1.1.1.1"
+      }
+    },
+    "externalIp-1-0-0-1": {
+      "data": {
+        "address": "1.0.0.1"
+      }
+    },
+    "devIp1": {
+      "data": {
+        "address": "10.88.88.1"
+      }
+    },
+    "devIp60": {
+      "data": {
+        "address": "10.88.88.60"
+      }
+    },
+    "devIp151": {
+      "data": {
+        "name": {{devIp151Name}},
+        "address": {{devIp151Address}}
+      }
+    },
+    "devIp152": {
+      "data": {
+        "address": "1.2.3.4"
+      }
+    },
+    "devIp172": {
+      "data": {
+        "address": "10.88.88.172"
+      }
+    }
+  },
+  "templates": {
+  },
+  "links": {
+  }
+}
