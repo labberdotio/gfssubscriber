@@ -1,0 +1,78 @@
+
+query allips {
+  Ips {
+    id,
+    name
+  }
+}
+
+query allmachines {
+  Machines {
+    id,
+    name,
+    defaultInterface {
+      id,
+      name,
+      hwaddr,
+      addresses {
+        id,
+        name,
+        address
+      }
+    },
+    configuredInterfaces {
+      id,
+      name,
+      hwaddr,
+      addresses {
+        id,
+        name,
+        address
+      }
+    }
+  }
+}
+
+query javamachines {
+  Machines(
+    name: "java"
+  ) {
+    id,
+    name,
+    defaultInterface {
+      id,
+      name,
+      hwaddr,
+      addresses {
+        id,
+        name,
+        address
+      }
+    },
+    configuredInterfaces {
+      id,
+      name,
+      hwaddr,
+      addresses {
+        id,
+        name,
+        address
+      }
+    }
+  }
+}
+
+mutation updateip {
+  updateIp(
+    id:"245",
+    name: "ipa92update"
+  ) {
+    ok,
+    error,
+    instance {
+      id,
+      name,
+      address
+    }
+  }
+}
