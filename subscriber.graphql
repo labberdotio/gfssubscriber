@@ -1,0 +1,36 @@
+
+subscription nodeevent {
+    nodeEvent(
+        events: ["create_instance", "update_instance"],
+        nodelabel: "DHCPService"
+    ) {
+        namespace,
+        event,
+        chain,
+        node {
+            namespace,
+            id,
+            label
+        },
+        origin {
+            namespace,
+            id,
+            label
+        },
+        path {
+            namespace,
+            id,
+            label,
+            source {
+                namespace,
+                id,
+                label
+            },
+            target {
+                namespace,
+                id,
+                label
+            }
+        },
+    }
+}
