@@ -113,8 +113,8 @@ def pathtostring(path):
     spath = ""
     if path:
         for pathitem in path:
-            # if "label" in pathitem and "source" in pathitem and "target" in pathitem:
-            spath = "(" + pathitem.get("source", {}).get("label") + " " + pathitem.get("source", {}).get("id") + " -> " + pathitem.get("label") + " -> " + pathitem.get("target", {}).get("label") + " " + pathitem.get("target", {}).get("id") + ") " + spath
+            # if "_label" in pathitem and "_source" in pathitem and "_target" in pathitem:
+            spath = "(" + pathitem.get("_source", {}).get("_label") + " " + pathitem.get("_source", {}).get("_id") + " -> " + pathitem.get("_label") + " -> " + pathitem.get("_target", {}).get("_label") + " " + pathitem.get("_target", {}).get("_id") + ") " + spath
     return spath
 
 def callback(data = {}):
